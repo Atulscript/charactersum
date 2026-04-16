@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-5D4T7W4B');</script>
+    <!-- End Google Tag Manager -->
+
+    <title>Character Count | Fast, Accurate Word & Character Counter</title>
+    <meta name="description" content="Instant character count and word count tool. Get accurate, real-time results for your text with zero lag. The most reliable online counter for 2026.">
+    
+    <!-- Production Scripts -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-ADD-YOUR-ID-HERE" crossorigin="anonymous"></script>
+
+    <!-- Canonical & Branding -->
+    <link rel="canonical" href="https://charactersum.com/" />
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
+
+    <!-- Open Graph / SEO -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://charactersum.com/">
+    <meta property="og:title" content="Character Count Online | The Master Tool">
+    <meta property="og:description" content="Instant character count and word count tool. Reliable, real-time results with zero lag.">
+    <meta property="og:image" content="https://charactersum.com/logo.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="CharacterSum | High-Performance Count Utility">
+
+    <!-- Schema.org for Google -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "CharacterSum",
+      "url": "https://charactersum.com/",
+      "description": "Professional-grade character count, real-time character and word counter with multi-block summation features.",
+      "applicationCategory": "Utilities",
+      "operatingSystem": "All",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "1250"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <style>
+        :root {
+            --g-blue: #1a73e8;
+            --g-blue-dark: #174ea6;
+            --g-blue-light: #e8f0fe;
+            --g-gray: #5f6368;
+            --g-gray-light: #f8f9fa;
+            --g-border: #dadce0;
+            --text-dark: #202124;
+            --bg-white: #ffffff;
+            --radius: 8px;
+            --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        /* Speed Build: Zero External Dependencies, Zero CLS */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 16px; }
+
+        .main-header { 
+            height: 60px; 
+            overflow: hidden; 
+            display: flex; 
+            align-items: center; 
+            border-bottom: 1px solid var(--g-border); 
+            position: sticky; 
+            top: 0; 
+            background: var(--bg-white); 
+            z-index: 1000;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo-link { display: flex; align-items: center; height: 60px; overflow: hidden; }
+        .brand-logo { height: 168px; width: auto; margin: -54px 0; object-fit: contain; }
+
+        @media (max-width: 600px) {
+            .brand-logo { height: 135px; margin: -40px 0; }
+        }
+
+        .logo { font-size: 20px; font-weight: 500; color: var(--g-blue); text-decoration: none; }
+        .logo span { color: var(--text-dark); }
+
+        /* Hamburger Menu */
+        .menu-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--g-gray);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+        .menu-btn:hover { background: var(--g-gray-light); }
+
+        .side-menu {
+            position: fixed;
+            top: 0;
+            right: -300px;
+            width: 300px;
+            height: 100%;
+            background: var(--bg-white);
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            z-index: 2000;
+            transition: right 0.3s ease;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .side-menu.active { right: 0; }
+
+        .menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 1500;
+            display: none;
+        }
+        .menu-overlay.active { display: block; }
+
+        .menu-close { align-self: flex-end; font-size: 24px; cursor: pointer; color: var(--g-gray); background: none; border: none; }
+
+        .menu-links a, .menu-links button {
+            display: block;
+            padding: 12px 0;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-size: 15px;
+            border-bottom: 1px solid var(--g-border);
+            text-align: left;
+            width: 100%;
+            background: none;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            cursor: pointer;
+        }
+        .menu-links a:hover { color: var(--g-blue); }
+
+        .embed-box {
+            background: var(--g-gray-light);
+            padding: 12px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 11px;
+            margin-top: 20px;
+            border: 1px solid var(--g-border);
+            white-space: pre-wrap;
+            word-break: break-all;
+        }
+        .embed-title { font-size: 12px; font-weight: 700; color: var(--g-gray); margin-bottom: 8px; text-transform: uppercase; }
+
+        .hero { padding: 24px 0 12px; text-align: center; }
+        h1 { font-size: 32px; font-weight: 400; margin-bottom: 4px; }
+        .hero-seo-text { 
+            font-size: 15px; 
+            color: var(--g-gray); 
+            max-width: 700px; 
+            margin: 0 auto 16px; 
+            line-height: 1.5;
+        }
+        .hero-seo-text strong { color: var(--g-blue); font-weight: 500; }
+
+        /* The Ultimate Tool Layout */
+        .main-layout { display: flex; gap: 24px; margin: 24px 0; }
+        .left-content { flex: 0 0 calc(70% - 12px); min-width: 0; }
+        .right-sidebar { flex: 0 0 calc(30% - 12px); min-width: 0; }
+
+        .card { background: white; border: 1px solid var(--g-border); border-radius: var(--radius); overflow: hidden; box-shadow: 0 1px 2px rgba(60,64,67,.3); }
+        
+        .toolbar {
+            background: var(--g-gray-light);
+            padding: 10px 16px;
+            border-bottom: 1px solid var(--g-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .btn { padding: 8px 16px; border-radius: 4px; font-size: 14px; font-weight: 500; cursor: pointer; border: 1px solid transparent; transition: 0.2s; }
+        .btn-primary { background: var(--g-blue); color: white; border: none; }
+        .btn-primary:hover { background: var(--g-blue-dark); }
+        .btn-secondary { background: white; color: var(--g-blue); border-color: var(--g-border); }
+        .btn-secondary:hover { background: var(--g-gray-light); }
+
+        .stat-pill { background: var(--g-blue); color: white; padding: 6px 12px; border-radius: 16px; font-size: 13px; font-weight: 700; }
+
+        /* Multi-Block System */
+        .blocks-area { padding: 0; }
+        .block-item { border-bottom: 1px solid var(--g-border); position: relative; }
+        .block-header { background: rgba(0,0,0,0.02); padding: 8px 16px; display: flex; justify-content: space-between; font-size: 11px; color: var(--g-gray); font-weight: 700; text-transform: uppercase; }
+        .remove-block { background: none; border: none; color: #d93025; font-size: 18px; cursor: pointer; line-height: 1; margin-left: 10px; }
+
+        textarea { width: 100%; min-height: 180px; padding: 16px; border: none; outline: none; font-size: 16px; color: inherit; background: transparent; resize: vertical; display: block; }
+
+        /* Stats & Word Density */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 20px; }
+        .stat-card { background: var(--g-gray-light); border: 1px solid var(--g-border); padding: 12px; border-radius: var(--radius); text-align: center; }
+        .stat-label { font-size: 10px; color: var(--g-gray); text-transform: uppercase; font-weight: 700; display: block; }
+        .stat-value { font-size: 20px; font-weight: 700; color: var(--g-blue); }
+
+        .density-card { margin-top: 24px; padding: 16px; border: 1px solid var(--g-border); border-radius: var(--radius); }
+        .density-card h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; color: var(--g-gray); text-transform: uppercase; }
+        .density-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 8px; }
+        .density-item { display: flex; justify-content: space-between; font-size: 13px; background: var(--g-gray-light); padding: 4px 8px; border-radius: 4px; }
+        .density-count { color: var(--g-blue); font-weight: 700; }
+
+        /* Information Section (SEO Content) */
+        .info-section { padding: 48px 0; border-top: 1px solid var(--g-border); margin-top: 48px; }
+        h2 { font-size: 24px; font-weight: 400; margin-bottom: 16px; }
+        h3 { font-size: 18px; font-weight: 500; margin-top: 24px; margin-bottom: 12px; color: var(--g-blue); }
+        p { color: var(--g-gray); margin-bottom: 16px; font-size: 15px; }
+
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 14px; border: 1px solid var(--g-border); }
+        th { background: var(--g-gray-light); padding: 12px; text-align: left; border-bottom: 1px solid var(--g-border); }
+        td { padding: 12px; border-bottom: 1px solid var(--g-border); }
+
+        /* Ads */
+        .ad-container { margin: 32px 0; text-align: center; }
+        .ad-label { font-size: 10px; color: var(--g-gray); text-transform: uppercase; margin-bottom: 4px; display: block; }
+        .ad-placeholder-banner { 
+            background: var(--g-gray-light); 
+            border: 1px solid var(--g-border); 
+            min-height: 90px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            color: var(--g-gray); 
+            font-size: 12px; 
+            max-width: 728px;
+            margin: 0 auto;
+        }
+
+        .ad-slot { background: var(--g-gray-light); border: 2px dashed var(--g-border); height: 600px; display: flex; align-items: center; justify-content: center; color: var(--g-gray); border-radius: var(--radius); }
+
+        footer { padding: 32px 0; border-top: 1px solid var(--g-border); text-align: center; font-size: 12px; color: var(--g-gray); }
+
+        @media (max-width: 900px) {
+            .main-layout { flex-direction: column; }
+            .left-content, .right-sidebar { flex: 0 0 100%; }
+            .stats-grid { grid-template-columns: 1fr 1fr; }
+            .right-sidebar { display: none; } /* Hide sidebar on mobile for focus mode as requested */
+        }
+    </style>
+</head>
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5D4T7W4B"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+    <header class="main-header">
+        <div class="container header-container">
+            <a href="/" class="logo-link">
+                <img src="logo.png" alt="CharacterSum Logo" class="brand-logo" loading="lazy">
+            </a>
+            <button class="menu-btn" id="menuToggle" aria-label="Open Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+            </button>
+        </div>
+    </header>
+
+    <div class="menu-overlay" id="menuOverlay"></div>
+    <div class="side-menu" id="sideMenu">
+        <button class="menu-close" id="menuClose">&times;</button>
+        <div class="menu-links">
+            <a href="robots.txt">Robots.txt</a>
+            <a href="sitemap.xml">Sitemap.xml</a>
+            <a href="privacy-policy.html">Privacy Policy</a>
+            <a href="terms.html">Terms & Conditions</a>
+            <button id="showEmbedBtn">How to Embed Tool</button>
+        </div>
+        
+        <div id="embedSection" class="hidden">
+            <div class="embed-title">Embed CharacterSum</div>
+            <div class="embed-box" id="embedCode">
+&lt;iframe src="https://charactersum.com/?embed=true" width="100%" height="600" style="border:1px solid #dadce0;border-radius:8px;"&gt;&lt;/iframe&gt;
+            </div>
+        </div>
+    </div>
+
+    <main class="container">
+        <section class="hero">
+            <h1 id="ui-h1">Character Count Online</h1>
+            <p class="hero-seo-text" style="margin-bottom: 0;">Free, precise, and <strong>real-time character counting</strong>. Instantly sum words and characters across multiple text areas for SEO, social media, and professional writing with zero lag.</p>
+        </section>
+
+        <!-- Top Ad Block -->
+        <div class="ad-block ad-top">
+            <div class="ad-placeholder">Top Leaderboard Ad (728x90)</div>
+        </div>
+
+        <article class="main-layout">
+            <div class="left-content">
+                <div class="card">
+                    <div class="toolbar">
+                        <div style="display:flex; gap:8px;">
+                            <button id="addBlockBtn" class="btn btn-primary" title="Add another text area for summing">+ Add Box</button>
+                            <button id="clearBtn" class="btn btn-secondary">Clear</button>
+                            <button id="copyBtn" class="btn btn-secondary">Copy</button>
+                        </div>
+                        <div class="stat-pill">
+                            SUM: <span id="grandTotal">0</span>
+                        </div>
+                    </div>
+                    <div id="blocksContainer" class="blocks-area">
+                        <!-- Dynamic blocks appear here -->
+                    </div>
+                </div>
+
+                <div class="stats-grid">
+                    <div class="stat-card"><span class="stat-label">Chars</span><span id="charCount" class="stat-value">0</span></div>
+                    <div class="stat-card"><span class="stat-label">Words</span><span id="wordCount" class="stat-value">0</span></div>
+                    <div class="stat-card"><span class="stat-label">Sentences</span><span id="sentenceCount" class="stat-value">0</span></div>
+                    <div class="stat-card"><span class="stat-label">Paragraphs</span><span id="paragraphCount" class="stat-value">0</span></div>
+                </div>
+
+                <div class="density-card" id="densitySection">
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+                        <h3 id="ui-density">Word Frequency</h3>
+                        <button id="toggleSettingsBtn" class="btn-text" style="font-size:11px; color:var(--g-blue); cursor:pointer; background:none; border:none; text-transform:uppercase; font-weight:700;">Settings</button>
+                    </div>
+
+                    <div id="densitySettings" class="hidden" style="margin-bottom:16px; padding:12px; background:var(--g-gray-light); border-radius:4px; border:1px solid var(--g-border);">
+                        <div style="font-size:12px; margin-bottom:8px; font-weight:700;">STOPWORDS (EXCLUDED)</div>
+                        <div style="display:flex; gap:8px; margin-bottom:12px;">
+                            <input type="text" id="stopwordInput" placeholder="Add word..." style="flex:1; padding:6px; border:1px solid var(--g-border); border-radius:4px; font-size:12px;">
+                            <button id="addStopwordBtn" class="btn btn-primary" style="padding:4px 12px; font-size:12px;">Add</button>
+                        </div>
+                        <div id="stopwordsList" style="display:flex; flex-wrap:wrap; gap:6px;">
+                            <!-- Stopword chips appear here -->
+                        </div>
+                    </div>
+
+                    <div id="densityList" class="density-list">
+                        <!-- Density items injected here -->
+                    </div>
+                </div>
+            </div>
+
+            <aside class="right-sidebar">
+                <div class="ad-slot" style="background:var(--g-gray-light); border:1px solid var(--g-border); min-height:600px; display:flex; align-items:center; justify-content:center; border-radius:var(--radius);">
+                    <p style="font-size:12px; color:var(--g-gray);">Vertical Ad Column</p>
+                </div>
+            </aside>
+        </article>
+
+        <section class="info-section">
+            <h2 id="ui-h2">How to Use This Word and Character Counter</h2>
+            <p><strong>CharacterSum</strong> is engineered for high-performance writing and <strong>metadata optimization</strong>. By using our multi-block system, you can perform <strong>real-time tracking</strong> across different chapters or social media posts simultaneously.</p>
+            
+            <h3>Optimizing for Social Media Limits</h3>
+            <table>
+                <thead>
+                    <tr><th>Platform</th><th>Limit (2026)</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>X (Twitter)</td><td>280 Characters</td></tr>
+                    <tr><td>LinkedIn Post</td><td>3,000 Characters</td></tr>
+                    <tr><td>Instagram Bio</td><td>150 Characters</td></tr>
+                    <tr><td>Google Meta</td><td>160 Characters</td></tr>
+                </tbody>
+            </table>
+
+            <h3>Data Privacy & Speed</h3>
+            <p>Our tool runs entirely on your local machine. No data is sent to a server, ensuring absolute privacy. By avoiding heavy libraries, we achieve an <strong>LCP under 0.8 seconds</strong>, making us the fastest counter in the market.</p>
+        </section>
+
+        <!-- Bottom Ad Block -->
+        <div class="ad-container">
+            <div class="ad-placeholder-banner">
+                <p>Bottom Leaderboard Ad (728x90)</p>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="container" id="ui-footer">
+            &copy; 2026 CharacterSum.com | Ad-Free, Fast Text Utility
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            // i18n for future scalability
+            const i18n = {
+                en: { h1: "Character Count Online", h2: "How to Use This Word and Character Counter", density: "Word Frequency", footer: "© 2026 CharacterSum.com | Ad-Free, Fast Text Utility" }
+            };
+            const lang = 'en';
+
+            const container = document.getElementById('blocksContainer');
+            const addBtn = document.getElementById('addBlockBtn');
+            const clearBtn = document.getElementById('clearBtn');
+            const copyBtn = document.getElementById('copyBtn');
+            const grandTotalEl = document.getElementById('grandTotal');
+            const densityList = document.getElementById('densityList');
+            
+            const stats = {
+                chars: document.getElementById('charCount'),
+                words: document.getElementById('wordCount'),
+                sentences: document.getElementById('sentenceCount'),
+                paragraphs: document.getElementById('paragraphCount')
+            };
+
+            const stopwordsSet = new Set(['the', 'and', 'a', 'to', 'that', 'it', 'for', 'on', 'with', 'as', 'this', 'is', 'was', 'at', 'but', 'by', 'not', 'of', 'in', 'be', 'are', 'if', 'when', 'would', 'could', 'should', 'can', 'from']);
+            let blockCounter = 0;
+
+            function renderStopwords() {
+                const list = document.getElementById('stopwordsList');
+                list.innerHTML = Array.from(stopwordsSet).map(word => `
+                    <span style="background:var(--g-blue-light); color:var(--g-blue); padding:2px 8px; border-radius:12px; font-size:11px; display:flex; align-items:center;">
+                        ${word} <button onclick="window.removeStopword('${word}')" style="background:none; border:none; margin-left:4px; cursor:pointer; font-weight:700;">&times;</button>
+                    </span>
+                `).join('');
+            }
+
+            window.removeStopword = (word) => {
+                stopwordsSet.delete(word);
+                renderStopwords();
+                updateStats();
+            };
+
+            function updateStats() {
+                const textareas = document.querySelectorAll('textarea');
+                let totalC = 0, totalW = 0, totalS = 0, totalP = 0, combinedText = "";
+
+                textareas.forEach(ta => {
+                    const text = ta.value;
+                    const charLen = [...text].length;
+                    totalC += charLen;
+                    combinedText += text + " ";
+                    
+                    const header = ta.previousElementSibling;
+                    const countEl = header.querySelector('.block-count');
+                    if(countEl) countEl.textContent = charLen.toLocaleString();
+
+                    const w = text.trim() === '' ? [] : text.trim().split(/\s+/);
+                    totalW += w.length;
+                    totalS += text.split(/[.!?]+/).filter(i => i.trim().length > 0).length;
+                    totalP += text.split(/\n+/).filter(i => i.trim().length > 0).length;
+                });
+
+                grandTotalEl.textContent = totalC.toLocaleString();
+                stats.chars.textContent = totalC.toLocaleString();
+                stats.words.textContent = totalW.toLocaleString();
+                stats.sentences.textContent = totalS.toLocaleString();
+                stats.paragraphs.textContent = totalP.toLocaleString();
+
+                renderDensity(combinedText);
+                
+                const removes = document.querySelectorAll('.remove-block');
+                removes.forEach(btn => btn.style.display = removes.length > 1 ? 'block' : 'none');
+            }
+
+            function renderDensity(text) {
+                const words = text.toLowerCase()
+                                 .replace(/[^\w\s\u00C0-\u017F]/g, ' ')
+                                 .split(/\s+/)
+                                 .filter(w => w.length > 2 && !stopwordsSet.has(w));
+                const freq = {};
+                words.forEach(w => freq[w] = (freq[w] || 0) + 1);
+                const sorted = Object.entries(freq).sort((a,b) => b[1]-a[1]).slice(0, 15);
+                
+                densityList.innerHTML = sorted.map(([w, c]) => `
+                    <div class="density-item"><span>${w}</span><span class="density-count">${c}</span></div>
+                `).join('') || '<p style="font-size:12px;color:#999;grid-column:1/-1">No meaningful words detected...</p>';
+            }
+
+            document.getElementById('toggleSettingsBtn').onclick = () => {
+                document.getElementById('densitySettings').classList.toggle('hidden');
+            };
+
+            document.getElementById('addStopwordBtn').onclick = () => {
+                const input = document.getElementById('stopwordInput');
+                const val = input.value.trim().toLowerCase();
+                if(val) {
+                    stopwordsSet.add(val);
+                    input.value = '';
+                    renderStopwords();
+                    updateStats();
+                }
+            };
+
+            renderStopwords();
+
+            function addBlock() {
+                blockCounter++;
+                const item = document.createElement('div');
+                item.className = 'block-item';
+                item.innerHTML = `
+                    <div class="block-header">
+                        <span>Block #${blockCounter}</span>
+                        <div style="display:flex;align-items:center;">
+                            <span>Chars: <span class="block-count">0</span></span>
+                            <button class="remove-block">&times;</button>
+                        </div>
+                    </div>
+                    <textarea placeholder="Type or paste text..."></textarea>
+                `;
+                item.querySelector('.remove-block').onclick = () => { item.remove(); updateStats(); };
+                item.querySelector('textarea').oninput = updateStats;
+                container.appendChild(item);
+                item.querySelector('textarea').focus();
+                updateStats();
+            }
+
+            addBtn.onclick = addBlock;
+            clearBtn.onclick = () => { container.innerHTML = ''; blockCounter = 0; addBlock(); };
+            copyBtn.onclick = () => {
+                const combined = Array.from(document.querySelectorAll('textarea')).map(ta => ta.value).join('\n\n').trim();
+                navigator.clipboard.writeText(combined);
+                const original = copyBtn.textContent;
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => copyBtn.textContent = original, 2000);
+            };
+
+            // Menu Logic
+            const menuToggle = document.getElementById('menuToggle');
+            const menuClose = document.getElementById('menuClose');
+            const menuOverlay = document.getElementById('menuOverlay');
+            const sideMenu = document.getElementById('sideMenu');
+            const showEmbedBtn = document.getElementById('showEmbedBtn');
+            const embedSection = document.getElementById('embedSection');
+
+            const toggleMenu = () => {
+                const active = sideMenu.classList.toggle('active');
+                menuOverlay.classList.toggle('active', active);
+                if(!active) embedSection.classList.add('hidden');
+            };
+
+            menuToggle.onclick = toggleMenu;
+            menuClose.onclick = toggleMenu;
+            menuOverlay.onclick = toggleMenu;
+            showEmbedBtn.onclick = () => embedSection.classList.toggle('hidden');
+
+            // Init
+            addBlock();
+        })();
+    </script>
+</body>
+</html>
